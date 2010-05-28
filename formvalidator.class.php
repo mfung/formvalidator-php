@@ -2,10 +2,10 @@
 class FormValidator {
 	
 	// private vars
-	private $_error_list			= Array();
+	private $error_list			= Array();
 	
 	public function __construct () {
-		
+		$this->resetErrorList();
 	}
 	
 	public function isEmpty ($field_name, $error_msg) {
@@ -113,15 +113,18 @@ class FormValidator {
 	}
 
 	public function isError () {
-
+		if (sizeof($this->error_list) > 0)
+			return true;
+		else
+			return false;
 	}
 
 	public function getErrorList () {
-
+		return $this->error_list;
 	}
 
 	public function resetErrorList () {
-
+		$this->error_list = Array();
 	}
 
 	private function getValue($field_name) {
